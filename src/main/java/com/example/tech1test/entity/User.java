@@ -1,17 +1,15 @@
 package com.example.tech1test.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "User")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "Id", nullable = false)
     private int id;
 
@@ -20,6 +18,25 @@ public class User {
 
     @Column(name = "age", nullable = false)
     private int age;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Article>articles;
+
+    public User(){}
+
+    public User(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+
+    public void setArticles(Article article) {
+        if (articles == null){
+            articles = new ArrayList<>();
+        }
+        articles.add(article);
+        article.setUser(this);
+    }
 
     public int getId() {
         return id;
@@ -45,11 +62,20 @@ public class User {
         this.age = age;
     }
 
-    public User(){}
+    public List<Article> getArticles() {
+        return articles;
+    }
 
-    public User(String name, int age) {
-        this.name = name;
-        this.age = age;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
 

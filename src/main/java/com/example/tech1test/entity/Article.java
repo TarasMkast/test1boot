@@ -62,4 +62,13 @@ private User user;
         this.text = text;
         this.color = color;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "text='" + text + '\'' +
+                ", color=" + color +
+                ", user=" + user +
+                '}';
+    }
 }
