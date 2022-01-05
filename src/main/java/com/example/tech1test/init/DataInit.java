@@ -1,7 +1,6 @@
 package com.example.tech1test.init;
 
-import com.example.tech1test.dao.ArticleDAO;
-import com.example.tech1test.dao.UserDAO;
+
 import com.example.tech1test.entity.Article;
 import com.example.tech1test.entity.User;
 import com.example.tech1test.enums.Color;
@@ -17,7 +16,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-//@Component
+@Component
 public class DataInit implements ApplicationRunner {
 
     @Autowired
@@ -66,8 +65,8 @@ public class DataInit implements ApplicationRunner {
 
         int k;
         for (int i = 1; i <= 8; i++) {
-            String randomArticle = articleList.get(random.nextInt(articleList.size()));
-            Article article = new Article(randomArticle, Color.randomColor());
+            String randomTextArticle = articleList.get(random.nextInt(articleList.size()));
+            Article article = new Article(randomTextArticle, Color.randomColor());
             k = random.nextInt(5);
             for (int j = 1; j <= k; j++){
                 Collections.shuffle(userList);
@@ -75,8 +74,7 @@ public class DataInit implements ApplicationRunner {
                 article.setUser(randomUser);
             }
             articleService.saveArticle(article);
-            System.out.println(userService.getAllUser());
-
         }
+        System.out.println("Інформацію додано!");
     }
 }

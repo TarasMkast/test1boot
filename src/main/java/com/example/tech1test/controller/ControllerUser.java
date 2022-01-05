@@ -1,7 +1,6 @@
 package com.example.tech1test.controller;
 
 import com.example.tech1test.entity.User;
-import com.example.tech1test.service.ArticleService;
 import com.example.tech1test.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +15,6 @@ public class ControllerUser {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private ArticleService articleService;
-
     @GetMapping("/all")
     public List<User> getAllUsers() {
         List<User> userList = userService.getAllUser();
@@ -27,24 +23,25 @@ public class ControllerUser {
 
     @GetMapping("/age")
     public List<User> getUserAge() {
-
-        return userService.getUserAge(userService.getAllUser());
+        List<User> users = userService.getUserAge();
+        return users;
     }
 
     @GetMapping("/color")
     public List<User> getUserColor() {
-
-        return userService.getUserColor(articleService.getAllArticle());
+        List<User> users = userService.getUserColor();
+        return users;
     }
 
     @GetMapping("/article")
-    public List<String> getUserArticle(){
-
-        return userService.getUserArticle(userService.getAllUser());
+    public List<String> getUserArticle() {
+        List<String> users = userService.getUserArticle();
+        return users;
     }
 
     @PostMapping()
     public User addUser(@RequestBody User user) {
+
         userService.saveUser(user);
         return user;
     }

@@ -22,6 +22,7 @@ public class ControllerArticle {
 
     @PostMapping()
     public Article addArticle(@RequestBody Article article){
+
         articleService.saveArticle(article);
         return article;
     }

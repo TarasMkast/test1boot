@@ -24,6 +24,7 @@ public class ArticleServiceImpl implements ArticleService{
     @Override
     @Transactional
     public void saveArticle(Article article) {
+
         articleDAO.saveArticle(article);
     }
 }

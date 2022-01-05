@@ -24,6 +24,7 @@ public class ArticleDAOImpl implements ArticleDAO{
     public void saveArticle(Article article) {
 
         Session session = entityManager.unwrap(Session.class);
+
         session.save(article);
     }
 }

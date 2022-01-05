@@ -1,5 +1,6 @@
 package com.example.tech1test.service;
 
+import com.example.tech1test.dao.ArticleDAO;
 import com.example.tech1test.dao.UserDAO;
 import com.example.tech1test.entity.Article;
 import com.example.tech1test.entity.User;
@@ -13,6 +14,9 @@ import java.util.List;
 
 @Service
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private ArticleDAO articleDAO;
 
     @Autowired
     private UserDAO userDAO;
@@ -32,9 +36,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<User> getUserAge(List<User> users) {
+    public List<User> getUserAge() {
+        List<User> users = userDAO.getAllUser();
         List<User> result = new ArrayList<>();
-        ;
         for (User user : users) {
             if (user.getAge() > 18) {
                 result.add(user);
@@ -45,11 +49,13 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<User> getUserColor(List<Article> articles) {
+    public List<User> getUserColor() {
+        final Color color = Color.BLUE;
+        List<Article> articles = articleDAO.getAllArticle();
         List<User> result = new ArrayList<>();
-        ;
+
         for (Article article : articles) {
-            if (article.getColor() == Color.BLACK) {
+            if (article.getColor() == color) {
                 result.add(article.getUser());
             }
         }
@@ -58,10 +64,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public List<String> getUserArticle(List<User> users) {
+    public List<String> getUserArticle() {
+        final int countArticle = 1;
+        List<User> users = userDAO.getAllUser();
         List<String> result = new ArrayList<>();
         for (User user : users) {
-            if (user.getArticles().size() > 3) {
+            if (user.getArticles().size() > countArticle) {
                 result.add(user.getName());
             }
         }

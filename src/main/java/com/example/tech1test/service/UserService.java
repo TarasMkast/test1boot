@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserService {
     public List<User>getAllUser();
     public void saveUser(User user);
-    public List<User> getUserAge(List<User> users);
-    List<User> getUserColor(List<Article> articles);
-    public List<String> getUserArticle(List<User> users);
+    public List<User> getUserAge();
+    List<User> getUserColor();
+    public List<String> getUserArticle();
 }

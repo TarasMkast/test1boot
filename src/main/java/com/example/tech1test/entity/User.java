@@ -1,15 +1,17 @@
 package com.example.tech1test.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Table(name = "User")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "Id", nullable = false)
     private int id;
 
@@ -19,7 +21,8 @@ public class User {
     @Column(name = "age", nullable = false)
     private int age;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    @OneToMany(fetch = FetchType.LAZY,
+                mappedBy = "user")
     private List<Article>articles;
 
     public User(){}
@@ -30,13 +33,13 @@ public class User {
     }
 
 
-    public void setArticles(Article article) {
-        if (articles == null){
-            articles = new ArrayList<>();
-        }
-        articles.add(article);
-        article.setUser(this);
-    }
+//    public void setArticles(Article article) {
+//        if (articles == null){
+//            articles = new ArrayList<>();
+//        }
+//        articles.add(article);
+//        article.setUser(this);
+//    }
 
     public int getId() {
         return id;
