@@ -1,5 +1,4 @@
 # Spring Boot 
-# Pet Project
 
 This is a sample Java 11 / Maven / Spring Boot (version 2.6.1) / Hibernate / JUnit application 
 
