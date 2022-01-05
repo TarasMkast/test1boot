@@ -1,6 +1,6 @@
 # Spring Boot 
 
-This is a sample Java 11 / Maven / Spring Boot (version 2.6.1) / Hibernate / JUnit application 
+This is a sample Java / Maven / Spring Boot (version 2.6.1) application 
 
 ## How to Run 
 
