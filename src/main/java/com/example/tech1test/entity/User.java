@@ -3,6 +3,7 @@ package com.example.tech1test.entity;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -33,13 +34,13 @@ public class User {
     }
 
 
-//    public void setArticles(Article article) {
-//        if (articles == null){
-//            articles = new ArrayList<>();
-//        }
-//        articles.add(article);
-//        article.setUser(this);
-//    }
+    public void setArticles(Article article) {
+        if (articles == null){
+            articles = new ArrayList<Article>();
+        }
+        articles.add(article);
+        article.setUser(this);
+    }
 
     public int getId() {
         return id;
@@ -67,10 +68,6 @@ public class User {
 
     public List<Article> getArticles() {
         return articles;
-    }
-
-    public void setArticles(List<Article> articles) {
-        this.articles = articles;
     }
 
     @Override

@@ -60,7 +60,7 @@ public class Article {
         this.color = color;
     }
 
-    @JsonIgnore
+     @JsonIgnore
     public User getUser() {
         return user;
     }
